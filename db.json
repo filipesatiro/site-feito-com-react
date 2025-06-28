@@ -80,6 +80,27 @@
       "cost": 0,
       "services": [],
       "id": 11
+    },
+    {
+      "cost": 0,
+      "services": [],
+      "id": 12
+    },
+    {
+      "cost": 0,
+      "services": [],
+      "id": 13
+    },
+    {
+      "name": "novo",
+      "budget": "1",
+      "category": {
+        "id": "4",
+        "name": "Planejamento"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 14
     }
   ],
   "categories": [
