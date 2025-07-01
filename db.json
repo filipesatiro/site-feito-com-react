@@ -1,22 +1,22 @@
 {
   "projects": [
     {
-      "name": "bom-projeto",
-      "budget": "550",
+      "name": "bom-bsr",
+      "budget": "1000",
       "category": {
-        "id": "3",
-        "name": "Design"
+        "id": "4",
+        "name": "Planejamento"
       },
       "cost": 0,
       "services": [],
       "id": 1
     },
     {
-      "name": "futebol",
-      "budget": "100",
+      "name": "futebol-lipe",
+      "budget": "500",
       "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
+        "id": "3",
+        "name": "Design"
       },
       "cost": 0,
       "services": [],
