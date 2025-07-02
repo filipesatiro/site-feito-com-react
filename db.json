@@ -13,7 +13,7 @@
     },
     {
       "name": "futebol-lipe",
-      "budget": "500",
+      "budget": "50",
       "category": {
         "id": "3",
         "name": "Design"
@@ -21,6 +21,17 @@
       "cost": 0,
       "services": [],
       "id": 2
+    },
+    {
+      "name": "filipe",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 3,
+      "budget": "5000"
     }
   ],
   "categories": [
