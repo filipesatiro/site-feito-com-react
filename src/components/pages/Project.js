@@ -1,8 +1,10 @@
+import {parse, v4 as uuidv4} from 'uuid'
 import styles from './Project.module.css'
 import { useParams } from 'react-router-dom'
 import Loading from '../layout/Loading'
 import ProjectForm from '../project/ProjectForm'
 import Message from '../layout/Message'
+import ServiceForm from '../service/ServiceForm'
 
 import { useState, useEffect } from 'react'
 import Container from '../layout/Container'
@@ -58,6 +60,42 @@ function Project () {
             })
             .catch(err => console.log(err))
         }
+        function createService (project){
+            setMessage('')
+            //last Service
+            const lastService = project.services[project.services.length -1]
+
+            lastService.id = uuidv4()
+
+            const lastServiceCost = lastService.cost
+
+            const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+            // maximum value validation
+            if(newCost > parseFloat(project.budget)) {
+                setMessage('Orçamento ultrapassado, verifique o valor do serviço')
+                setType('error')
+                project.services.pop()
+                return false
+            }
+            // add service cost to project total cost
+            project.cost = newCost
+
+            // update project
+            fetch(`http://localhost:5000/projects/${project.id}`,{
+            method: 'PATCH',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(project)
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            // exibir os serviços
+            console.log(data)
+        })
+        .catch(err => console.log(err))
+    }
 
         function toggleProjectForm() {
             setShowProjectForm(!showProjectForm)
@@ -65,6 +103,7 @@ function Project () {
            function toggleServiceForm() {
             setShowServiceForm(!showServiceForm)
         }
+    
 
     return (
     
@@ -99,7 +138,13 @@ function Project () {
         </button>
         </div>
             <div className={styles.project_info}>
-            {showServiceForm && (<div>Formulário do Serviço</div>)}
+            {showServiceForm && 
+                <ServiceForm
+                handleSubmit={createService}
+                btnText="Adicionar Serviço"
+                projectData={project}
+                />
+            }
             </div>  
             <h2>Serviços</h2>
             <Container customClass="start">
@@ -110,5 +155,6 @@ function Project () {
             ): (<Loading />)}
             </>
             )}
+
 
 export default Project
